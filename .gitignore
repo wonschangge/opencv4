@@ -25,3 +25,10 @@ build
 node_modules
 CMakeSettings.json
 xcuserdata/
+
+!build/build.sh
+!build/*.hpp
+!build/modules/**/*.cpp
+!build/modules/**/*.hpp
+!build/modules/**/*.inc
+!build/opencv2

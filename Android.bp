@@ -1,0 +1,838 @@
+// //================================
+// // opencv-4.11.0
+// //================================
+
+// //================================libopencv_core
+cc_library_shared {
+
+    name: "libopencv_core",
+
+    compile_multilib: "both",
+
+    rtti: true,
+
+    cflags: [
+        "-fPIC",
+        "-fexceptions",
+        "-g",
+        "-Wall",
+        "-std=c++11",
+        "-Werror",
+        "-Wno-register",
+        "-Wno-reorder-ctor",
+        "-Wno-unused-function",
+        "-Wno-for-loop-analysis",
+        "-Wno-missing-braces",
+        "-Wno-deprecated",
+        "-Wno-unused-private-field",
+        "-Wno-unused-variable",
+        "-Wno-unused-value",
+        "-Wno-writable-strings",
+        "-Wno-backslash-newline-escape",
+        "-Wno-logical-op-parentheses",
+        "-Wno-null-conversion",
+        "-Wno-null-pointer-arithmetic",
+        "-Wno-delete-non-abstract-non-virtual-dtor",
+        "-Wno-implicit-function-declaration",
+        "-Wno-delete-abstract-non-virtual-dtor",
+        "-Wno-dangling-gsl",
+        "-Wno-implicit-fallthrough",
+        "-Wno-switch",
+        "-Wno-tautological-undefined-compare",
+        "-Wno-tautological-pointer-compare",
+        "-Wno-macro-redefined",
+        "-Wno-missing-field-initializers",
+        "-Wno-non-virtual-dtor",
+        "-Wno-c++11-narrowing",
+        "-Wno-overloaded-virtual",
+        "-Wno-sign-compare",
+        "-Wno-unused-parameter",
+        "-Wno-gnu-inline-cpp-without-extern",
+        "-Wno-return-type",
+        "-Wno-literal-conversion",
+        "-Wno-mismatched-tags",
+        "-Wno-enum-compare-switch",
+        "-Wno-enum-compare",
+        "-DANDROID",
+        "-DCERES_NO_SUITESPARSE",
+        "-DCERES_NO_CXSPARSE",
+        "-DCERES_NO_THREADS",
+        "-DCERES_NO_LAPACK",
+        "-DCERES_STD_UNORDERED_MAP",
+        "-DGL_GLEXT_PROTOTYPES",
+        "-D__OPENCV_BUILD=1",
+    ],
+
+    local_include_dirs: [
+        "include",
+        "build",
+        "build/modules/core",
+        "modules/core/include",
+        "modules/core/src/",
+    ],
+
+    srcs: [
+        "modules/core/src/*.cpp",
+        "modules/core/src/parallel/*.cpp",
+        "modules/core/src/utils/*.cpp",
+    ],
+
+    host_ldlibs: [
+        "-ldl",
+        "-lm",
+        "-lz",
+    ],
+
+    shared_libs: [
+        "liblog",
+    ],
+}
+
+// //================================libopencv_imgproc
+cc_library_shared {
+
+    name: "libopencv_imgproc",
+
+    compile_multilib: "both",
+
+    rtti: true,
+
+    cflags: [
+        "-fPIC",
+        "-fexceptions",
+        "-g",
+        "-Wall",
+        "-std=c++11",
+        "-Werror",
+        "-Wno-register",
+        "-Wno-reorder-ctor",
+        "-Wno-unused-function",
+        "-Wno-for-loop-analysis",
+        "-Wno-missing-braces",
+        "-Wno-deprecated",
+        "-Wno-unused-private-field",
+        "-Wno-unused-variable",
+        "-Wno-unused-value",
+        "-Wno-writable-strings",
+        "-Wno-backslash-newline-escape",
+        "-Wno-logical-op-parentheses",
+        "-Wno-null-conversion",
+        "-Wno-null-pointer-arithmetic",
+        "-Wno-delete-non-abstract-non-virtual-dtor",
+        "-Wno-implicit-function-declaration",
+        "-Wno-delete-abstract-non-virtual-dtor",
+        "-Wno-dangling-gsl",
+        "-Wno-implicit-fallthrough",
+        "-Wno-switch",
+        "-Wno-tautological-undefined-compare",
+        "-Wno-tautological-pointer-compare",
+        "-Wno-macro-redefined",
+        "-Wno-missing-field-initializers",
+        "-Wno-non-virtual-dtor",
+        "-Wno-c++11-narrowing",
+        "-Wno-overloaded-virtual",
+        "-Wno-sign-compare",
+        "-Wno-unused-parameter",
+        "-Wno-gnu-inline-cpp-without-extern",
+        "-Wno-return-type",
+        "-Wno-literal-conversion",
+        "-Wno-mismatched-tags",
+        "-Wno-enum-compare-switch",
+        "-Wno-enum-compare",
+        "-DANDROID",
+        "-DCERES_NO_SUITESPARSE",
+        "-DCERES_NO_CXSPARSE",
+        "-DCERES_NO_THREADS",
+        "-DCERES_NO_LAPACK",
+        "-DCERES_STD_UNORDERED_MAP",
+        "-DGL_GLEXT_PROTOTYPES",
+        "-D__OPENCV_BUILD=1",
+    ],
+
+    local_include_dirs: [
+        "include",
+        "build",
+        "build/modules/imgproc",
+        "modules/imgproc/include",
+        "modules/core/include",
+        "3rdparty/include/opencl/1.2/CL/"
+    ],
+
+    srcs: [
+        "modules/imgproc/src/*.cpp",
+    ],
+
+    exclude_srcs: [
+        "modules/imgproc/src/corner.avx.cpp",
+        "modules/imgproc/src/imgwarp.avx2.cpp",
+        "modules/imgproc/src/imgwarp.lasx.cpp",
+        "modules/imgproc/src/imgwarp.sse4_1.cpp",
+        "modules/imgproc/src/resize.avx2.cpp",
+        "modules/imgproc/src/resize.lasx.cpp",
+        "modules/imgproc/src/resize.sse4_1.cpp",
+        "modules/imgproc/src/sumpixels.avx512_skx.cpp",
+    ],
+
+    host_ldlibs: [
+        "-ldl",
+        "-lm",
+    ],
+
+    shared_libs: [
+        "liblog",
+        "libopencv_core"
+    ],
+
+}
+
+// //================================libopencv_calib3d
+cc_library_shared {
+
+    name: "libopencv_calib3d",
+
+    compile_multilib: "both",
+
+    rtti: true,
+
+    cflags: [
+        "-fPIC",
+        "-fexceptions",
+        "-g",
+        "-Wall",
+        "-std=c++11",
+        "-Werror",
+        "-Wno-register",
+        "-Wno-reorder-ctor",
+        "-Wno-unused-function",
+        "-Wno-for-loop-analysis",
+        "-Wno-missing-braces",
+        "-Wno-deprecated",
+        "-Wno-unused-private-field",
+        "-Wno-unused-variable",
+        "-Wno-unused-value",
+        "-Wno-writable-strings",
+        "-Wno-backslash-newline-escape",
+        "-Wno-logical-op-parentheses",
+        "-Wno-null-conversion",
+        "-Wno-null-pointer-arithmetic",
+        "-Wno-delete-non-abstract-non-virtual-dtor",
+        "-Wno-implicit-function-declaration",
+        "-Wno-delete-abstract-non-virtual-dtor",
+        "-Wno-dangling-gsl",
+        "-Wno-implicit-fallthrough",
+        "-Wno-switch",
+        "-Wno-tautological-undefined-compare",
+        "-Wno-tautological-pointer-compare",
+        "-Wno-macro-redefined",
+        "-Wno-missing-field-initializers",
+        "-Wno-non-virtual-dtor",
+        "-Wno-c++11-narrowing",
+        "-Wno-overloaded-virtual",
+        "-Wno-sign-compare",
+        "-Wno-unused-parameter",
+        "-Wno-gnu-inline-cpp-without-extern",
+        "-Wno-return-type",
+        "-Wno-literal-conversion",
+        "-Wno-mismatched-tags",
+        "-Wno-enum-compare-switch",
+        "-Wno-enum-compare",
+        "-DANDROID",
+        "-DCERES_NO_SUITESPARSE",
+        "-DCERES_NO_CXSPARSE",
+        "-DCERES_NO_THREADS",
+        "-DCERES_NO_LAPACK",
+        "-DCERES_STD_UNORDERED_MAP",
+        "-DGL_GLEXT_PROTOTYPES",
+        "-D__OPENCV_BUILD=1",
+    ],
+
+    local_include_dirs: [
+        "include",
+        "build",
+        "build/modules/calib3d",
+        "modules/calib3d/include",
+        "modules/features2d/include",
+        "modules/flann/include",
+        "modules/imgproc/include",
+        "modules/core/include",
+    ],
+
+    srcs: [
+        "modules/calib3d/src/*.cpp",
+        "modules/calib3d/src/usac/*.cpp",
+    ],
+
+    host_ldlibs: [
+        "-ldl",
+        "-lm",
+    ],
+
+    shared_libs: [
+        "liblog",
+        "libopencv_features2d",
+        "libopencv_flann",
+        "libopencv_imgproc",
+        "libopencv_core",
+    ],
+
+}
+
+// //================================libopencv_features2d
+cc_library_shared {
+
+    name: "libopencv_features2d",
+
+    compile_multilib: "both",
+
+    rtti: true,
+
+    cflags: [
+        "-fPIC",
+        "-fexceptions",
+        "-g",
+        "-Wall",
+        "-std=c++11",
+        "-Werror",
+        "-Wno-register",
+        "-Wno-reorder-ctor",
+        "-Wno-unused-function",
+        "-Wno-for-loop-analysis",
+        "-Wno-missing-braces",
+        "-Wno-deprecated",
+        "-Wno-unused-private-field",
+        "-Wno-unused-variable",
+        "-Wno-unused-value",
+        "-Wno-writable-strings",
+        "-Wno-backslash-newline-escape",
+        "-Wno-logical-op-parentheses",
+        "-Wno-null-conversion",
+        "-Wno-null-pointer-arithmetic",
+        "-Wno-delete-non-abstract-non-virtual-dtor",
+        "-Wno-implicit-function-declaration",
+        "-Wno-delete-abstract-non-virtual-dtor",
+        "-Wno-dangling-gsl",
+        "-Wno-implicit-fallthrough",
+        "-Wno-switch",
+        "-Wno-tautological-undefined-compare",
+        "-Wno-tautological-pointer-compare",
+        "-Wno-macro-redefined",
+        "-Wno-missing-field-initializers",
+        "-Wno-non-virtual-dtor",
+        "-Wno-c++11-narrowing",
+        "-Wno-overloaded-virtual",
+        "-Wno-sign-compare",
+        "-Wno-unused-parameter",
+        "-Wno-gnu-inline-cpp-without-extern",
+        "-Wno-return-type",
+        "-Wno-literal-conversion",
+        "-Wno-mismatched-tags",
+        "-Wno-enum-compare-switch",
+        "-Wno-enum-compare",
+        "-DANDROID",
+        "-DCERES_NO_SUITESPARSE",
+        "-DCERES_NO_CXSPARSE",
+        "-DCERES_NO_THREADS",
+        "-DCERES_NO_LAPACK",
+        "-DCERES_STD_UNORDERED_MAP",
+        "-DGL_GLEXT_PROTOTYPES",
+        "-D__OPENCV_BUILD=1",
+    ],
+
+    local_include_dirs: [
+        "include",
+        "build",
+        "build/modules/features2d",
+        "modules/features2d/include",
+        "modules/flann/include",
+        "modules/imgproc/include",
+        "modules/core/include",
+    ],
+
+    srcs: [
+        "modules/features2d/src/*.cpp",
+        "modules/features2d/src/kaze/*.cpp",
+    ],
+
+    exclude_srcs: [
+        "modules/features2d/src/fast.avx2.cpp",
+    ],
+
+    host_ldlibs: [
+        "-ldl",
+        "-lm",
+    ],
+
+    shared_libs: [
+        "liblog",
+        "libopencv_flann",
+        "libopencv_imgproc",
+        "libopencv_core",
+    ],
+
+}
+
+// //================================libopencv_objdetect
+cc_library_shared {
+
+    name: "libopencv_objdetect",
+
+    compile_multilib: "both",
+
+    rtti: true,
+
+    cflags: [
+        "-fPIC",
+        "-fexceptions",
+        "-g",
+        "-Wall",
+        "-std=c++11",
+        "-Werror",
+        "-Wno-register",
+        "-Wno-reorder-ctor",
+        "-Wno-unused-function",
+        "-Wno-for-loop-analysis",
+        "-Wno-missing-braces",
+        "-Wno-deprecated",
+        "-Wno-unused-private-field",
+        "-Wno-unused-variable",
+        "-Wno-unused-value",
+        "-Wno-writable-strings",
+        "-Wno-backslash-newline-escape",
+        "-Wno-logical-op-parentheses",
+        "-Wno-null-conversion",
+        "-Wno-null-pointer-arithmetic",
+        "-Wno-delete-non-abstract-non-virtual-dtor",
+        "-Wno-implicit-function-declaration",
+        "-Wno-delete-abstract-non-virtual-dtor",
+        "-Wno-dangling-gsl",
+        "-Wno-implicit-fallthrough",
+        "-Wno-switch",
+        "-Wno-tautological-undefined-compare",
+        "-Wno-tautological-pointer-compare",
+        "-Wno-macro-redefined",
+        "-Wno-missing-field-initializers",
+        "-Wno-non-virtual-dtor",
+        "-Wno-c++11-narrowing",
+        "-Wno-overloaded-virtual",
+        "-Wno-sign-compare",
+        "-Wno-unused-parameter",
+        "-Wno-gnu-inline-cpp-without-extern",
+        "-Wno-return-type",
+        "-Wno-literal-conversion",
+        "-Wno-mismatched-tags",
+        "-Wno-enum-compare-switch",
+        "-Wno-enum-compare",
+        "-DANDROID",
+        "-DCERES_NO_SUITESPARSE",
+        "-DCERES_NO_CXSPARSE",
+        "-DCERES_NO_THREADS",
+        "-DCERES_NO_LAPACK",
+        "-DCERES_STD_UNORDERED_MAP",
+        "-DGL_GLEXT_PROTOTYPES",
+        "-D__OPENCV_BUILD=1",
+    ],
+
+    local_include_dirs: [
+        "include",
+        "build",
+        "build/modules/objdetect",
+        "modules/objdetect/include",
+        "modules/calib3d/include",
+        "modules/features2d/include",
+        "modules/flann/include",
+        "modules/imgproc/include",
+        "modules/core/include",
+        "modules/dnn/include",
+    ],
+
+    srcs: [
+        "modules/objdetect/src/*.cpp",
+    ],
+
+    exclude_srcs: [
+        "modules/objdetect/src/barcode.cpp",
+        "modules/objdetect/src/qrcode.cpp",
+    ],
+
+    host_ldlibs: [
+        "-ldl",
+        "-lm",
+    ],
+
+    shared_libs: [
+        "liblog",
+        "libopencv_calib3d",
+        "libopencv_features2d",
+        "libopencv_flann",
+        "libopencv_imgproc",
+        "libopencv_core",
+        "libopencv_dnn",
+    ],
+
+}
+
+// //================================libopencv_flann
+cc_library_shared {
+
+    name: "libopencv_flann",
+
+    compile_multilib: "both",
+
+    rtti: true,
+
+    cflags: [
+        "-fPIC",
+        "-fexceptions",
+        "-g",
+        "-Wall",
+        "-std=c++11",
+        "-Werror",
+        "-Wno-register",
+        "-Wno-reorder-ctor",
+        "-Wno-unused-function",
+        "-Wno-for-loop-analysis",
+        "-Wno-missing-braces",
+        "-Wno-deprecated",
+        "-Wno-unused-private-field",
+        "-Wno-unused-variable",
+        "-Wno-unused-value",
+        "-Wno-writable-strings",
+        "-Wno-backslash-newline-escape",
+        "-Wno-logical-op-parentheses",
+        "-Wno-null-conversion",
+        "-Wno-null-pointer-arithmetic",
+        "-Wno-delete-non-abstract-non-virtual-dtor",
+        "-Wno-implicit-function-declaration",
+        "-Wno-delete-abstract-non-virtual-dtor",
+        "-Wno-dangling-gsl",
+        "-Wno-implicit-fallthrough",
+        "-Wno-switch",
+        "-Wno-tautological-undefined-compare",
+        "-Wno-tautological-pointer-compare",
+        "-Wno-macro-redefined",
+        "-Wno-missing-field-initializers",
+        "-Wno-non-virtual-dtor",
+        "-Wno-c++11-narrowing",
+        "-Wno-overloaded-virtual",
+        "-Wno-sign-compare",
+        "-Wno-unused-parameter",
+        "-Wno-gnu-inline-cpp-without-extern",
+        "-Wno-return-type",
+        "-Wno-literal-conversion",
+        "-Wno-mismatched-tags",
+        "-Wno-enum-compare-switch",
+        "-Wno-enum-compare",
+        "-DANDROID",
+        "-DCERES_NO_SUITESPARSE",
+        "-DCERES_NO_CXSPARSE",
+        "-DCERES_NO_THREADS",
+        "-DCERES_NO_LAPACK",
+        "-DCERES_STD_UNORDERED_MAP",
+        "-DGL_GLEXT_PROTOTYPES",
+        "-D__OPENCV_BUILD=1",
+    ],
+
+    local_include_dirs: [
+        "include",
+        "build",
+        "modules/flann/include",
+        "modules/core/include",
+    ],
+
+    srcs: [
+        "modules/flann/src/*.cpp",
+    ],
+
+    host_ldlibs: [
+        "-ldl",
+        "-lm",
+    ],
+
+    shared_libs: [
+        "liblog",
+        "libopencv_core"
+    ],
+
+}
+
+// //================================libopencv_dnn
+cc_library_shared {
+
+    name: "libopencv_dnn",
+
+    compile_multilib: "both",
+
+    rtti: true,
+
+    cflags: [
+        "-fPIC",
+        "-fexceptions",
+        "-g",
+        "-Wall",
+        "-std=c++11",
+        "-Werror",
+        "-Wno-register",
+        "-Wno-reorder-ctor",
+        "-Wno-unused-function",
+        "-Wno-for-loop-analysis",
+        "-Wno-missing-braces",
+        "-Wno-deprecated",
+        "-Wno-unused-private-field",
+        "-Wno-unused-variable",
+        "-Wno-unused-value",
+        "-Wno-writable-strings",
+        "-Wno-backslash-newline-escape",
+        "-Wno-logical-op-parentheses",
+        "-Wno-null-conversion",
+        "-Wno-null-pointer-arithmetic",
+        "-Wno-delete-non-abstract-non-virtual-dtor",
+        "-Wno-implicit-function-declaration",
+        "-Wno-delete-abstract-non-virtual-dtor",
+        "-Wno-dangling-gsl",
+        "-Wno-implicit-fallthrough",
+        "-Wno-switch",
+        "-Wno-tautological-undefined-compare",
+        "-Wno-tautological-pointer-compare",
+        "-Wno-macro-redefined",
+        "-Wno-missing-field-initializers",
+        "-Wno-non-virtual-dtor",
+        "-Wno-c++11-narrowing",
+        "-Wno-overloaded-virtual",
+        "-Wno-sign-compare",
+        "-Wno-unused-parameter",
+        "-Wno-gnu-inline-cpp-without-extern",
+        "-Wno-return-type",
+        "-Wno-literal-conversion",
+        "-Wno-mismatched-tags",
+        "-Wno-enum-compare-switch",
+        "-Wno-enum-compare",
+        "-DANDROID",
+        "-DCERES_NO_SUITESPARSE",
+        "-DCERES_NO_CXSPARSE",
+        // "-DCERES_NO_THREADS",
+        "-DCERES_NO_LAPACK",
+        "-DCERES_STD_UNORDERED_MAP",
+        "-DGL_GLEXT_PROTOTYPES",
+        "-D__OPENCV_BUILD=1",
+        "-DHAVE_PROTOBUF", // 编译DNN必须附加
+        // "-DGOOGLE_PROTOBUF_NO_THREADLOCAL",
+    ],
+
+    local_include_dirs: [
+        "include",
+        "build",
+        "build/modules/dnn",
+        "modules/dnn/include",
+        "modules/dnn/misc/onnx/",
+        "modules/imgproc/include",
+        "modules/core/include",
+    ],
+
+    include_dirs: [
+        "external/protobuf/src", // 使用系统protobuf模块,当前为3.9.1
+    ],
+
+    srcs: [
+        "modules/dnn/src/*.cpp",
+        "modules/dnn/src/int8layers/*.cpp",
+        "modules/dnn/src/layers/*.cpp",
+        "modules/dnn/src/layers/cpu_kernels/*.cpp",
+        "modules/dnn/src/onnx/*.cpp", // 目前只启用ONNX
+        "modules/dnn/misc/onnx/*.cc",
+    ],
+
+    exclude_srcs: [
+        "modules/dnn/src/net_openvino.cpp",
+    ],
+
+    host_ldlibs: [
+        "-ldl",
+        "-lm",
+    ],
+
+    shared_libs: [
+        "liblog",
+        "libopencv_core",
+        "libopencv_imgproc",
+        "libopencv-protobuf",
+    ],
+}
+
+// //================================libopencv_protobuf
+cc_library_shared {
+
+    name: "libopencv_protobuf",
+
+    compile_multilib: "both",
+
+    rtti: true,
+
+    cflags: [
+        "-fPIC",
+        "-fexceptions",
+        "-g",
+        "-Wall",
+        "-std=c++11",
+        "-Werror",
+        "-Wno-register",
+        "-Wno-reorder-ctor",
+        "-Wno-unused-function",
+        "-Wno-for-loop-analysis",
+        "-Wno-missing-braces",
+        "-Wno-deprecated",
+        "-Wno-unused-private-field",
+        "-Wno-unused-variable",
+        "-Wno-unused-value",
+        "-Wno-writable-strings",
+        "-Wno-backslash-newline-escape",
+        "-Wno-logical-op-parentheses",
+        "-Wno-null-conversion",
+        "-Wno-null-pointer-arithmetic",
+        "-Wno-delete-non-abstract-non-virtual-dtor",
+        "-Wno-implicit-function-declaration",
+        "-Wno-delete-abstract-non-virtual-dtor",
+        "-Wno-dangling-gsl",
+        "-Wno-implicit-fallthrough",
+        "-Wno-switch",
+        "-Wno-tautological-undefined-compare",
+        "-Wno-tautological-pointer-compare",
+        "-Wno-macro-redefined",
+        "-Wno-missing-field-initializers",
+        "-Wno-non-virtual-dtor",
+        "-Wno-c++11-narrowing",
+        "-Wno-overloaded-virtual",
+        "-Wno-sign-compare",
+        "-Wno-unused-parameter",
+        "-Wno-gnu-inline-cpp-without-extern",
+        "-Wno-return-type",
+        "-Wno-literal-conversion",
+        "-Wno-mismatched-tags",
+        "-Wno-enum-compare-switch",
+        "-Wno-enum-compare",
+        "-DANDROID",
+        "-D__ANDROID__",
+        "-DCERES_NO_SUITESPARSE",
+        "-DCERES_NO_CXSPARSE",
+        "-DCERES_NO_THREADS",
+        "-DCERES_NO_LAPACK",
+        "-DCERES_STD_UNORDERED_MAP",
+    ],
+
+    local_include_dirs: [
+        "3rdparty/protobuf/src",
+    ],
+
+    srcs: [
+        "3rdparty/protobuf/src/google/protobuf/*.cc",
+        "3rdparty/protobuf/src/google/protobuf/io/*.cc",
+        "3rdparty/protobuf/src/google/protobuf/stubs/*.cc",
+    ],
+
+    host_ldlibs: [
+        "-ldl",
+        "-lm",
+    ],
+
+    shared_libs: [
+        "liblog",
+    ],
+}
+
+// //================================libopencv_compile_test --- test binary
+cc_binary {
+
+    name: "libopencv_compile_test",
+
+    rtti: true,
+
+    cflags: [
+        "-fPIC",
+        "-fexceptions",
+        "-g",
+        "-Wall",
+        "-std=c++11",
+        "-Werror",
+        "-Wno-register",
+        "-Wno-reorder-ctor",
+        "-Wno-unused-function",
+        "-Wno-for-loop-analysis",
+        "-Wno-missing-braces",
+        "-Wno-deprecated",
+        "-Wno-unused-private-field",
+        "-Wno-unused-variable",
+        "-Wno-unused-value",
+        "-Wno-writable-strings",
+        "-Wno-backslash-newline-escape",
+        "-Wno-logical-op-parentheses",
+        "-Wno-null-conversion",
+        "-Wno-null-pointer-arithmetic",
+        "-Wno-delete-non-abstract-non-virtual-dtor",
+        "-Wno-implicit-function-declaration",
+        "-Wno-delete-abstract-non-virtual-dtor",
+        "-Wno-dangling-gsl",
+        "-Wno-implicit-fallthrough",
+        "-Wno-switch",
+        "-Wno-tautological-undefined-compare",
+        "-Wno-tautological-pointer-compare",
+        "-Wno-macro-redefined",
+        "-Wno-missing-field-initializers",
+        "-Wno-non-virtual-dtor",
+        "-Wno-c++11-narrowing",
+        "-Wno-overloaded-virtual",
+        "-Wno-sign-compare",
+        "-Wno-unused-parameter",
+        "-Wno-gnu-inline-cpp-without-extern",
+        "-Wno-return-type",
+        "-Wno-literal-conversion",
+        "-Wno-mismatched-tags",
+        "-Wno-enum-compare-switch",
+        "-Wno-enum-compare",
+        "-DANDROID",
+        "-DCERES_NO_SUITESPARSE",
+        "-DCERES_NO_CXSPARSE",
+        "-DCERES_NO_THREADS",
+        "-DCERES_NO_LAPACK",
+        "-DCERES_STD_UNORDERED_MAP",
+        "-DGL_GLEXT_PROTOTYPES",
+        "-D__OPENCV_BUILD=1",
+    ],
+
+    local_include_dirs: [
+        "build",
+        "include",
+        "modules/core/include/",
+        "modules/calib3d/include/",
+        "modules/dnn/include/",
+        "modules/features2d/include/",
+        "modules/flann/include/",
+        "modules/imgproc/include/",
+        "modules/objdetect/include/",
+    ],
+
+    srcs: ["samples/dnn/face_recognition_sface/main.cpp"],
+
+    host_ldlibs: [
+        "-ldl",
+        "-lm",
+        "-llog",
+    ],
+
+    shared_libs: [
+        "libopencv_core",
+        "libopencv_dnn",
+        "libopencv_flann",
+        "libopencv_imgproc",
+        "libopencv_calib3d",
+        "libopencv_features2d",
+        "libopencv_objdetect",
+    ],
+
+    target: {
+        android_arm64: {
+            enabled: true,
+        },
+        android_x86_64: {
+            enabled: true,
+        },
+    },
+}
