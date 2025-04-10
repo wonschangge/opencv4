@@ -1,4 +1,5 @@
 cmake .. \
+    -DCPU_BASELINE=NEON \
     -DCPU_ONLY=ON \
     -DWITH_ONNX=ON \
     -DCV_DISABLE_OPTIMIZATION=ON \

@@ -61,6 +61,7 @@ cc_library_shared {
         "-DCERES_STD_UNORDERED_MAP",
         "-DGL_GLEXT_PROTOTYPES",
         "-D__OPENCV_BUILD=1",
+        "-DCPU_BASELINE=NEON",
     ],
 
     local_include_dirs: [
@@ -249,6 +250,7 @@ cc_library_shared {
     local_include_dirs: [
         "include",
         "build",
+        "build/opencv2",
         "build/modules/calib3d",
         "modules/calib3d/include",
         "modules/features2d/include",
