@@ -249,6 +249,7 @@ cc_library_shared {
     local_include_dirs: [
         "include",
         "build",
+        "build/opencv2",
         "build/modules/calib3d",
         "modules/calib3d/include",
         "modules/features2d/include",
